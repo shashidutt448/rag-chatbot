@@ -5,7 +5,7 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
 
-st.set_page_config(layout="wide", page_title="📄 RAG Chatbot | Amlgo Labs")
+st.set_page_config(layout="wide", page_title=" RAG Chatbot | Amlgo Labs")
 st.title("🤖 AI-Powered Legal Document Chatbot")
 
 # Sidebar
@@ -30,17 +30,17 @@ if uploaded_file:
             chunks = split_text(cleaned)
 
             if not chunks:
-                st.error("❌ No readable text found in the uploaded PDF.")
+                st.error(" No readable text found in the uploaded PDF.")
                 st.stop()
 
             rag = RAGPipeline(chunks, model_id=MODEL_ID)
-            st.success(f"✅ Document processed into {len(chunks)} chunks.")
+            st.success(f" Document processed into {len(chunks)} chunks.")
         except Exception as e:
-            st.error(f"💥 Failed during document processing or model loading:\n\n{e}")
+            st.error(f" Failed during document processing or model loading:\n\n{e}")
             st.stop()
 
     # User Query
-    query = st.text_input("🧠 Ask something about the document:")
+    query = st.text_input(" Ask something about the document:")
     if query:
         with st.spinner("💬 Generating response..."):
             try:
@@ -48,8 +48,8 @@ if uploaded_file:
                 st.markdown("### 📌 **Answer**")
                 st.markdown(f"{answer}")
 
-                with st.expander("📚 Source Chunks"):
+                with st.expander(" Source Chunks"):
                     for i, chunk in enumerate(source_chunks):
                         st.markdown(f"**Chunk {i+1}:**\n> {chunk}")
             except Exception as e:
-                st.error(f"❌ Error during query execution:\n\n{e}")
+                st.error(f" Error during query execution:\n\n{e}")
